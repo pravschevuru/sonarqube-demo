@@ -1,0 +1,16 @@
+== Sonarqube Demo
+
+Maven:
+
+[source,bash]
+----
+./mvnw -Pcoverage-per-test clean org.jacoco:jacoco-maven-plugin:prepare-agent
+install sonar:sonar
+----
+
+Gradle:
+
+[source,bash]
+----
+./gradlew clean sonarqube
+----

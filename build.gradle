@@ -1,0 +1,43 @@
+apply plugin: 'java'
+apply plugin: 'org.sonarqube'
+apply plugin: "jacoco"
+
+version = '1.0-SNAPSHOT'
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "SonarQube Gradle Demo"
+        property "sonar.projectKey", "io.eddumelendez:sonarqube-gradlle-demo"
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.jacoco.reportPath", "${buildDir.name}/jacoco/test.exec"
+    }
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
+
+jacoco {
+    reportsDir = file("${buildDir.name}/tmp/jacoco.exec")
+}
+
+repositories {
+    maven {
+        url "http://repo1.maven.org/maven2/"
+    }
+}
+
+buildscript {
+    repositories {
+        maven {
+            url "http://repo1.maven.org/maven2/"
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.2'
+    }
+}
