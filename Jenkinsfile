@@ -5,6 +5,7 @@ node {
 
     stage 'Gradle Static Analysis'
     withSonarQubeEnv {
+        sh 'chmod +x gradlew'
         sh "./gradlew clean sonarqube"
     }
 
